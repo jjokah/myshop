@@ -316,6 +316,6 @@ Session.vim
 tags
 
 ### Project template
-myshop/media/
+media/
 
 .pytest_cache/
