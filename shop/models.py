@@ -1,7 +1,14 @@
+"""
+This module holds models of every object in the shop.
+"""
+
+
 from django.db import models
 
 
 class Category(models.Model):
+    """ The category model each product is classified into. """
+
     name = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, unique=True)
 
@@ -15,6 +22,8 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+    """ The product model of an item in the shop. """
+
     category = models.ForeignKey(
         Category, related_name="products", on_delete=models.CASCADE
     )
