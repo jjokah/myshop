@@ -83,7 +83,7 @@ class Cart(object):
         Calculate the total cost of items in the cart.
         """
         return sum(
-            Decimal(item["price"]) * item["quantiy"]
+            Decimal(item["price"]) * item["quantity"]
             for item in self.cart.values()
         )
 
