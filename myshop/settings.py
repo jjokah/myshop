@@ -12,7 +12,11 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 import environ
+
 import django_heroku
+
+from celery import Celery
+import braintree
 from decouple import config
 
 env = environ.Env()
@@ -45,6 +49,7 @@ INSTALLED_APPS = [
     "shop.apps.ShopConfig",
     "cart.apps.CartConfig",
     "orders.apps.OrdersConfig",
+    "payment.apps.PaymentConfig",
 ]
 
 MIDDLEWARE = [
@@ -101,9 +106,15 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
-    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",},
-    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",},
-    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",},
+    {
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+    },
 ]
 
 
@@ -145,3 +156,16 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # Activate Django-Heroku
 django_heroku.settings(locals())
+
+# Braintree settings
+BRAINTREE_MERCHANT_ID = config("BRAINTREE_MERCHANT_ID", default="")
+BRAINTREE_PUBLIC_KEY = config("BRAINTREE PUBLIC_KEY", default="")
+BRAINTREE_PRIVATE_KEY = config("BRAINTREE_PRIVATE_KEY", default="")
+
+
+BRAINTREE_CONF = braintree.Configuration(
+    braintree.Environment.Sandbox,
+    BRAINTREE_MERCHANT_ID,
+    BRAINTREE_PUBLIC_KEY,
+    BRAINTREE_PRIVATE_KEY,
+)
