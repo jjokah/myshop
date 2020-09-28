@@ -161,7 +161,7 @@ django_heroku.settings(locals())
 
 # Braintree settings
 BRAINTREE_MERCHANT_ID = config("BRAINTREE_MERCHANT_ID", default="")
-BRAINTREE_PUBLIC_KEY = config("BRAINTREE PUBLIC_KEY", default="")
+BRAINTREE_PUBLIC_KEY = config("BRAINTREE_PUBLIC_KEY", default="")
 BRAINTREE_PRIVATE_KEY = config("BRAINTREE_PRIVATE_KEY", default="")
 
 
