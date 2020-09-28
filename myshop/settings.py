@@ -45,7 +45,9 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    "cloudinary_storage",
     "django.contrib.staticfiles",
+    "cloudinary",
     "shop.apps.ShopConfig",
     "cart.apps.CartConfig",
     "orders.apps.OrdersConfig",
@@ -169,3 +171,10 @@ BRAINTREE_CONF = braintree.Configuration(
     BRAINTREE_PUBLIC_KEY,
     BRAINTREE_PRIVATE_KEY,
 )
+
+CLOUDINARY_STORAGE = {
+    "CLOUD_NAME": "htq77bsxc",
+    "API_KEY": "978545228555329",
+    "API_SECRET": "-IM-MTnkep09R_bI_GO2C7da3eQ",
+}
+DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
