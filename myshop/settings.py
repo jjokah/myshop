@@ -15,8 +15,6 @@ import environ
 
 import django_heroku
 
-from celery import Celery
-import cloudinary
 import braintree
 from decouple import config
 
