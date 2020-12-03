@@ -39,15 +39,8 @@ def order_create(request):
                 )
             # clear the cart
             cart.clear()
-            """
-            FIXME:
-            order.id passed to order_created does not exit
-            TODO:
-            - google async task with celery on django(testdrive.io)
-            - try delaying the task for a longer time (10sec)
-            """
             # launch asynchronous task
-            order_created.delay(order.id)
+            order_created.apply_async((order.id,), countdown=3)
             # set the order in the session
             request.session["order_id"] = order.id
             # redirect for payment
