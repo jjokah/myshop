@@ -1,6 +1,8 @@
 """
 Order models to be managed in django admin site.
 """
+
+
 import csv
 import datetime
 
@@ -13,6 +15,10 @@ from .models import Order, OrderItem
 
 
 def export_to_csv(modeladmin, request, queryset):
+    """
+    Custom admin action to download list of Orders as a CSV file
+    """
+
     opts = modeladmin.model._meta
     content_disposition = "attachment; filename={opts.verbose_name}.csv"
     response = HttpResponse(content_type="text/csv")
@@ -51,14 +57,28 @@ class OrderItemInline(admin.TabularInline):
 
 
 def order_detail(obj):
+    """
+    Link to display the detail of each Order
+    """
     url = reverse("orders:admin_order_detail", args=[obj.id])
     return mark_safe(f'<a href="{url}">View</a>')
+
+
+def order_pdf(obj):
+    """
+    Link to pdf file of each order Order
+    """
+    url = reverse("orders:admin_order_pdf", args=[obj.id])
+    return mark_safe(f'<a href="{url}">PDF</a>')
+
+
+order_pdf.short_description = "Invoice"
 
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
     """
-    Include Order model
+    Add Order model to admin site
     """
 
     list_display = [
@@ -73,6 +93,7 @@ class OrderAdmin(admin.ModelAdmin):
         "created",
         "updated",
         order_detail,
+        order_pdf,
     ]
     list_filter = ["paid", "created", "updated"]
     inlines = [OrderItemInline]

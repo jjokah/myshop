@@ -20,6 +20,7 @@ python-decouple = "3.3"
 redis = "3.4.1"
 braintree = "^4.5.0"
 dj3-cloudinary-storage = "^0.0.3"
+WeasyPrint = "^52.1"
 
 [tool.poetry.dev-dependencies]
 pylint = "^2.6.0"
