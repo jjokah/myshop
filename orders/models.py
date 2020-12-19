@@ -37,6 +37,19 @@ class Order(models.Model):
     def __str__(self):
         return f"Order {self.id}"
 
+    def get_total_cost_before_discount(self):
+        """ Returns the total cost of items before discount. """
+
+        total_cost = sum(item.get_cost() for item in self.items.all())
+        return total_cost
+
+    def get_discount(self):
+        if self.coupon:
+            return (
+                self.discount / Decimal(100)
+            ) * self.get_total_cost_before_discount()
+        return Decimal(0)
+
     def get_total_cost(self):
         """ Returns the total cost of items. """
 
