@@ -985,3 +985,23 @@ table#change-history tbody th {
 .popup #header {
     padding: 10px 20px;
 }
+
+
+/* Added Styles */
+tbody tr.subtotal {
+    background:#ccc;
+}
+
+tbody tr.total {
+    background:#5993bb;
+    color:#fff;
+    font-weight:bold;
+}
+
+tbody td.num {
+    text-align:right;
+}
+
+.neg {
+    color:#dc1616;
+}
