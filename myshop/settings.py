@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 import environ
 
+from django.utils.translation import gettext_lazy as _
 import django_heroku
 
 import braintree
@@ -127,8 +128,8 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = "en-us"
 
 LANGUAGES = (
-    ("en", "English"),
-    ("es", "Spanish"),
+    ("en", _("English")),
+    ("es", _("Spanish")),
 )
 
 LOCALE_PATHS = (os.path.join(BASE_DIR, "locale/"),)
