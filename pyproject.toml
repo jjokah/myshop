@@ -7,7 +7,7 @@ license = "MIT"
 
 [tool.poetry.dependencies]
 python = "^3.8"
-celery = "4.4.2"
+celery = "5.2.2"
 cloudinary = "1.22.0"
 Django = "3.0.*"
 django-environ = "0.4.5"
